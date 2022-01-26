@@ -11,4 +11,9 @@ describe('backend routes', () => {
   afterAll(() => {
     pool.end();
   });
+  it('should not have a root route', async () => {
+    const res = await request(app).get('/');
+
+    expect(res.status).toEqual(404);
+  });
 });
