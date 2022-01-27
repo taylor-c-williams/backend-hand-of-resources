@@ -23,4 +23,15 @@ describe('backend routes', () => {
       birthdate: '5/29/1975'
     });
   });
+
+  it('gets ALL Mel Bs', async () => {
+    const realMel = await Melb.insert({ name:'Melanie Janine Brown', stagename:'Scary Spice', birthdate:'5/29/1975' });
+
+    const anotherMel = await Melb.insert({ name:'Mel J. Brown', stagename:'Scary Spice', birthdate:'May 29th, 1975' });
+
+    const res = await request(app).get('/api/vi/spiceupyourlife/melb');
+    expect(res.body).toEqual([realMel, anotherMel]);
+  });
+    
 });
+
