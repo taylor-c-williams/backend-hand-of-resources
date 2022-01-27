@@ -32,4 +32,12 @@ describe('Emma Routes', () => {
     const res = await request(app).get('/api/v1/spiceupyourlife/emma');
     expect(res.body).toEqual([realEmma, fakeEmma]);
   });
+
+  it ('fetches a single Emma by her ID', async () => {
+    const emma = await Emma.insert({ name: 'Emma Bunton', stagename: 'Baby Spice', birthdate:'1/21/1976' });
+    
+    const res = await request(app).get(`/api/v1/spiceupyourlife/emma/${emma.id}`);
+
+    expect(res.body).toEqual(emma);
+  });
 });
