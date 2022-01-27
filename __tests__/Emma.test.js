@@ -40,4 +40,13 @@ describe('Emma Routes', () => {
 
     expect(res.body).toEqual(emma);
   });
+
+  it ('updates an Emma by her ID', async () => {
+    const emma = await Emma.insert({ name:'Emma Bunton', stagename: 'Baby Spice', birthdate:'1/21/1976' });
+
+    const res = await request(app)
+      .patch(`/api/v1/spiceupyourlife/emma/${emma.id}`)
+      .send({ name: 'Emma Lee Bunton' });
+    expect(res.body).toEqual({ ...emma, name:'Emma Lee Bunton' });
+  });
 });
