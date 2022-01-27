@@ -23,4 +23,13 @@ describe('Emma Routes', () => {
       birthdate: '1/21/1976'
     });
   });
+
+  it('gets all Emmas', async () => {
+    const realEmma = await Emma.insert({ name:'Emma Lee Bunton', stagename: 'Baby Spice', birthdate:'1/21/1976' });
+
+    const fakeEmma = await Emma.insert({ name: 'Fake Emma', stagename: 'Bubby Spice', birthdate: '1/22/1976' });
+
+    const res = await request(app).get('/api/v1/spiceupyourlife/emma');
+    expect(res.body).toEqual([realEmma, fakeEmma]);
+  });
 });
