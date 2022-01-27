@@ -32,6 +32,13 @@ describe('backend routes', () => {
     const res = await request(app).get('/api/v1/spiceupyourlife/melb');
     expect(res.body).toEqual([realMel, anotherMel]);
   });
+
+  it('fetches a Melanie B. by her ID', async () => {
+    const melb = await Melb.insert({ name:'Melanie Janine Brown', stagename:'Scary Spice', birthdate:'5/29/1975' });
+
+    const res = await request(app).get(`/api/v1/spiceupyourlife/melb/${melb.id}`);
+
+    expect(res.body).toEqual(melb);
+  });
     
 });
-
