@@ -52,5 +52,14 @@ describe('Victoria Routes', () => {
     expect(res.body).toEqual(victoria);
   });
 
+  it ('updates a Victoria by her ID', async () => {
+    const victoria = await Victoria.insert({ name:'Victoria Adams', stagename: 'Posh Spice', birthdate:'1/21/1976' });
+
+    const res = await request(app)
+      .patch(`/api/v1/spiceupyourlife/victoria/${victoria.id}`)
+      .send({ name: 'Victoria Beckham' });
+    expect(res.body).toEqual({ ...victoria, name:'Victoria Beckham' });
+  });
+
 
 });
