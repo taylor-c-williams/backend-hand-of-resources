@@ -61,5 +61,12 @@ describe('Victoria Routes', () => {
     expect(res.body).toEqual({ ...victoria, name:'Victoria Beckham' });
   });
 
+  it('deletes a Victoria by her ID', async () => {
+    const victoria  = await Victoria.insert({ name:'Victoria Adams', stagename: 'Posh Spice', birthdate:'1/21/1976' });
+    const res = await request(app).delete(`/api/v1/spiceupyourlife/victoria/${victoria.id}`);
+    
+    expect(res.body).toEqual(victoria);
+    expect(await Victoria.getById(victoria.id)).toBeNull();
+  });
 
 });
