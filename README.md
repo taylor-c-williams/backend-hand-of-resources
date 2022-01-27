@@ -53,4 +53,5 @@ Finally, once you've built out all the routes, deploy your API to Heroku and giv
 | Tests exist for ALL routes | 3 |
 | API is deployed to Heroku | 2
 
- |
+
+ ![handofresources](/handofresources.jpeg)
