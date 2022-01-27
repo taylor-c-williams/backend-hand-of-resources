@@ -49,4 +49,12 @@ describe('Emma Routes', () => {
       .send({ name: 'Emma Lee Bunton' });
     expect(res.body).toEqual({ ...emma, name:'Emma Lee Bunton' });
   });
+
+  it('deletes an Emma by her ID', async () => {
+    const emma = await Emma.insert({ name:'Emma Bunton', stagename:'Baby Spice', birthdate:'1/21/1976' });
+    const res = await request(app).delete(`/api/v1/spiceupyourlife/emma/${emma.id}`);
+    
+    expect(res.body).toEqual(emma);
+    expect(await Emma.getById(emma.id)).toBeNull();
+  });
 });
