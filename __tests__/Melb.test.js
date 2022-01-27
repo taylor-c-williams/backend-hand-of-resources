@@ -29,7 +29,7 @@ describe('backend routes', () => {
 
     const anotherMel = await Melb.insert({ name:'Mel J. Brown', stagename:'Scary Spice', birthdate:'May 29th, 1975' });
 
-    const res = await request(app).get('/api/vi/spiceupyourlife/melb');
+    const res = await request(app).get('/api/v1/spiceupyourlife/melb');
     expect(res.body).toEqual([realMel, anotherMel]);
   });
     
