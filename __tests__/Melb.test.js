@@ -16,9 +16,7 @@ describe('backend routes', () => {
   it('creates a Mel B. entry ', async () => {
     const mel = await Melb.insert({ name:'Melanie Janine Brown', stagename:'Scary Spice', birthdate:'5/29/1975' });
 
-    const res = await request(app).get('api/v1/spiceupyourlife');
-
-    expect(res).toEqual({
+    expect(mel).toEqual({
       id: expect.any(String),
       name: 'Melanie Janine Brown',
       stagename: 'Scary Spice',
