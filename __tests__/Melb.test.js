@@ -49,5 +49,13 @@ describe('backend routes', () => {
 
     expect(res.body).toEqual({ ...melb, name: 'Melanie Brown' });
   });
+
+  it('deletes a Mel B. by her ID', async () => {
+    const melb = await Melb.insert({ name:'Melanie Janine Brown', stagename:'Scary Spice', birthdate:'5/29/1975' });
+    const res = await request(app).delete(`/api/v1/spiceupyourlife/melb/${melb.id}`);
+
+    expect(res.body).toEqual(melb);
+    expect(await Melb.getById(melb.id)).toBeNull();
+  });
     
 });
